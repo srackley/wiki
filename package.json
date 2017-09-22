@@ -1,0 +1,32 @@
+{
+  "name": "wiki",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon -e html,js,css ./wiki.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/srackley/wiki.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/srackley/wiki/issues"
+  },
+  "homepage": "https://github.com/srackley/wiki#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "morgan": "^1.8.2",
+    "nunjucks": "^3.0.1",
+    "pg": "^7.3.0",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  }
+}
