@@ -17,4 +17,14 @@
     </div>
   
   </form>
+
+
+
+<ul>
+    {% for page in pages %}
+      <li><a href="/wiki/{{ page.urlTitle }}">{{ page.title }}</a></li>
+    {% endfor %}
+  </ul>
+
+
 {% endblock %}
