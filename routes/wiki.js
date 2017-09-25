@@ -16,7 +16,9 @@ router.post('/', function(req, res, next) {
         var user = values[0];
         var page = Page.build({
             title: req.body.title,
-            content: req.body.content
+            content: req.body.content,
+            status: req.body.status,
+            tags: req.body.tags.split(',')
       }); 
    return page.save().then(function(page){
         return page.setAuthor(user);
@@ -41,6 +43,22 @@ router.get('/add', function(req, res, next){
     res.render('addpage');
     });
 
+router.get('/search', function(req, res, next){
+    res.render("search");
+    console.log(req.query.q);
+    Page.findAll({
+        where: {
+            tags: {
+                $overlap: [req.query.q]
+            }
+        }
+    }).then(function(pages){
+        res.render('searchResults', {
+            pages: pages
+        })
+    })
+    });
+
 router.get('/:urlTitle', function(req, res, next){
     Page.findOne({
        where: { 
@@ -51,7 +69,7 @@ router.get('/:urlTitle', function(req, res, next){
        ] 
     })
     .then(function(page){   
-        console.log(page);
+        console.log(page.tags);
         if (page === null){
             res.status(404).send();
         }  else {
@@ -67,5 +85,7 @@ router.get('/:urlTitle', function(req, res, next){
 })
     .catch(next);
 });
+
+
 
 router.use('/users', require('./users'));

@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <h3>Search for a Page</h3>
+  <hr>
+  <form action="/wiki/search" method="GET">
+
+    <div class="form-group">
+      <label for="q" class="col-sm-2 control-label">Search Term</label>
+      <div class="col-sm-10">
+        <input name="q" type="text" class="form-control"/>
+      </div>
+    </div>
+
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+  
+  </form>
+{% endblock %}
