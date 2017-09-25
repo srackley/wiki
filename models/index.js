@@ -7,8 +7,8 @@ const Page = db.define('page', {
     title: {type: Sequelize.STRING, allowNull: false},
     urlTitle: {type: Sequelize.STRING, allowNull: false, isUrl: true},
     content: {type: Sequelize.TEXT, allowNull: false},
-    status: Sequelize.ENUM('open', 'closed')
-    // date: {type: Sequelize.DATE, defaultValue: Sequelize.NOW}
+    status: {type: Sequelize.ENUM('open', 'closed')},
+    tags: {type: Sequelize.ARRAY(Sequelize.TEXT)}
   }, {
     getterMethods: {
         route() {
@@ -29,6 +29,8 @@ const User = db.define('user', {
     name: {type: Sequelize.STRING, allowNull: false},
     email: {type: Sequelize.STRING, allowNull: false, validate:{isEmail: true}}
 });
+
+Page.belongsTo(User, {as: 'author'});
 
 module.exports = {
     Page: Page,
